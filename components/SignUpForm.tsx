@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core';
 import React, { useState } from 'react'
 import AlertDialog from './AlertDialog';
 
-const useStyles = makeStyles((theme) => {
-    return {
+const useStyles = makeStyles({
+    // return {
         input: {
             fontSize: '1.8rem',
             padding: '0.5rem',
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => {
         submit: {
             color: 'var(--colorPrimary)',
             fontSize: '2rem',
-            fontWeight: '900',
+            fontWeight: 'bolder',
             background: 'white',
             border: '0px',
             '&:hover': {
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => {
                 transform: 'scale(1.5)',
             },
         },
-    }
+    // }
 });
 
 export default function Form() {

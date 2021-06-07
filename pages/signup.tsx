@@ -6,13 +6,12 @@ import SignUpForm from '../components/SignUpForm'
 import Link from 'next/link'
 import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles((theme) => {
-    return {
+const useStyles = makeStyles({
         submit: {
             marginTop: '2rem',
             color: 'var(--colorPrimary)',
             fontSize: '2rem',
-            fontWeight: '900',
+            fontWeight: 'bolder',
             background: 'white',
             border: '0px',
             '&:hover': {
@@ -20,7 +19,6 @@ const useStyles = makeStyles((theme) => {
                 transform: 'scale(1.5)',
             },
         },
-    }
 });
 
 export default function SignUp() {

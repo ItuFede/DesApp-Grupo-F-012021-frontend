@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -9,12 +11,12 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AlertDialog from './AlertDialog';
 
-const useStyles = makeStyles((theme) => {
-    return {
+const useStyles = makeStyles({
+    // createStyles({
         input: {
             fontSize: '1.8rem',
             padding: '0.5rem',
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => {
         submit: {
             color: 'var(--colorPrimary)',
             fontSize: '2rem',
-            fontWeight: '900',
+            fontWeight: 'bolder',
             background: 'white',
             border: '0px',
             '&:hover': {
@@ -38,11 +40,11 @@ const useStyles = makeStyles((theme) => {
                 transform: 'scale(1.5)',
             },
         },
-    }
+    // })
 });
 
 export default function LoginForm() {
-    const classes = useStyles();
+  const classes = useStyles();
   const [showAlert, setShowAlert] = useState(false);
 
     const registerUser = async event => {
