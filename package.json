@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next dev",
-    "heroku-postbuild": "tsc"
+    "tsc": "tsc",
+    "postinstall": "npm run tsc"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
