@@ -14,3 +14,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --colorPrimary: #005df3;
+  --colorSecondary: rgb(79, 2, 223);
+  --colorGradient: -webkit-linear-gradient(310deg, #005df3, rgb(79, 2, 223));
+  --colorError: rgb(223, 90, 2);
+}
