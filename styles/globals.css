@@ -1,0 +1,23 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --colorPrimary: #005df3;
+  --colorSecondary: rgb(79, 2, 223);
+  --colorGradient: -webkit-linear-gradient(310deg, #005df3, rgb(79, 2, 223));
+  --colorError: rgb(223, 90, 2);
+}
