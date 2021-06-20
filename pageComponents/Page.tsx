@@ -9,7 +9,7 @@ export default function Page(props): JSX.Element {
     <>
         <Head>
             <title>Re-Seña!</title>
-            <meta name="description" content="Puntuá tus películas y series favoritas y encontrá recomendaciones!" />
+            <meta name="description" content="¡Puntuá tus películas y series favoritas y encontrá recomendaciones!" />
         </Head>
         <main className="page-wrapper">
             <Header/>
