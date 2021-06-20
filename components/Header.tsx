@@ -1,10 +1,13 @@
 import React from 'react'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Meta.module.css'
 
-export default function Header() {
+export default function Header(): JSX.Element {
     return(
-        <h1 className={styles.title}>
+      <div className={styles.containerHeadertitle}>
+        <a className={styles.headertitle} href="/">
           Re-Seña!
-        </h1>
+        </a>
+        <hr/>
+      </div>
     )
 }

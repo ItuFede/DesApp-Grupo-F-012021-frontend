@@ -1,0 +1,84 @@
+.headertitle {
+    margin: 1em 0.1em;
+    padding: 0 0.55em 0 0.5em;
+    line-height: 1.15;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--colorPrimary);
+    background: var(--colorGradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.headertitle:hover, .headertitle:active {
+    margin: 1em 0.1em;
+    line-height: 1.15;
+    font-weight: 900;
+    color: black;
+    background-color: white;
+    -webkit-background-clip:unset;
+    -webkit-text-fill-color: white;
+}
+
+.containerHeadertitle {
+    margin-top: 0.35em;
+}
+
+.title {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--colorPrimary);
+    background: var(--colorGradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.authPageContainer {
+    min-height: 100vh;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.authPageContainer .authPageSubtitle {
+    text-align: center;
+    line-height: 1.5;
+    font-size: 1.7rem;
+    max-width: 600px;
+    font-weight: 550;
+}
+
+.authPageContainer .card {
+    margin: 1rem;
+    padding: 1rem 5.5rem;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 900;
+    color: black;
+    background-color: whitesmoke;
+    box-shadow:black 0 0 20px 0px;
+    max-width: 600px;
+}
+
+.card a, .outsideCardBtn {
+    margin: 1rem;
+}
+
+.card a:hover, .outsideCardBtn:hover {
+    transform: scale(1.5);
+    color: var(--colorPrimary);
+}
+
+.outsideCardBtn {
+    font-size: 2rem;
+    font-weight: 900;
+}

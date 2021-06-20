@@ -1,46 +1,24 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Meta.module.css'
 import React from 'react'
-import Header from '../components/Header'
 import SignUpForm from '../components/SignUpForm'
 import Link from 'next/link'
-import { makeStyles } from '@material-ui/core'
-
-const useStyles = makeStyles({
-        submit: {
-            marginTop: '2rem',
-            color: 'var(--colorPrimary)',
-            fontSize: '2rem',
-            fontWeight: 'bolder',
-            background: 'white',
-            border: '0px',
-            '&:hover': {
-                color: 'var(--colorSecondary)',
-                transform: 'scale(1.5)',
-            },
-        },
-});
+import AuthPage from '../pageComponents/AuthPage'
 
 export default function SignUp() {
-    const classes = useStyles();
-    
+
     return (
-      <div className={styles.container}>
-        <Head>
-            <title>Re-Seña!</title>
-            <meta name="description" content="Puntuá tus películas y series favoritas y encontrá recomendaciones!" />
-        </Head>
-        
-        <main className={styles.main}>
-        <Header />
-  
-          <div className={styles.card}>
-            <SignUpForm/>
-          </div>
-          <Link href="/">
-            <a className={classes.submit}>Volver</a>
-          </Link>
-        </main>
-      </div>
+      <AuthPage
+        subtitle={<p className={styles.authPageSubtitle}>Registrarse</p>}
+        component={
+          <>
+            <div className={styles.card}>
+              <SignUpForm/>
+            </div>
+
+            <Link href="/">
+              <a className={styles.outsideCardBtn}>Volver</a>
+            </Link>
+          </>
+      }/>
     )
   }
