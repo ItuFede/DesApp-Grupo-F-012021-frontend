@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import formStyle from '../styles/Forms.module.css'
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 
 export default function LoginForm(): JSX.Element {
 
@@ -22,12 +23,16 @@ export default function LoginForm(): JSX.Element {
 
     return (
       <>
-        <form onSubmit={registerUser}>
-            <label htmlFor="email">E-Mail</label>
-            <input id="email" name="email" type="mail" required />
-            <label htmlFor="password">Contraseña</label>
-            <input id="password" name="password" type="password" required />
-            <button type="submit">Iniciar Sesión</button>
+        <form onSubmit={registerUser} className={formStyle.form}>
+          <div className={formStyle.inputContainer}>
+            <FontAwesomeIcon icon={faEnvelope} className={formStyle.inputIcon} />
+            <input id="email" name="email" type="mail" className={formStyle.input} placeholder="Escribe tu e-mail" />
+          </div>
+          <div className={formStyle.inputContainer}>
+            <FontAwesomeIcon icon={faLock} className={formStyle.inputIcon} />
+            <input id="password" name="password" type="password" className={formStyle.input} placeholder="Escribe tu contraseña" />
+          </div>
+          <button type="submit" className={formStyle.submit}>Iniciar Sesión</button>
         </form>
       </>
     )

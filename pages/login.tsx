@@ -9,7 +9,7 @@ export default function Login(): JSX.Element {
 
     return (
       <AuthPage
-        subtitle={<p className={styles.authPageSubtitle}>Iniciar Sesión</p>}
+        subtitle={<></>}
         component={
           <>
             <div className={styles.card}>

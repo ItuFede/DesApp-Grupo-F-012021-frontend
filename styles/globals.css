@@ -17,6 +17,10 @@ a {
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+}
+
 :root {
   --colorPrimary: #3380fd;
   --colorSecondary: #7342fb;

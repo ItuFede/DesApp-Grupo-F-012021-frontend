@@ -1,7 +1,10 @@
+import { faEnvelope, faLock, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
+import formStyle from '../styles/Forms.module.css'
 
 export default function Form(): JSX.Element {
-
+  const [isCriticUser, setIsCriticUser] = useState(false)
     const registerUser = async event => {
       event.preventDefault()
       const res = await fetch('/api/signup', {
@@ -20,14 +23,30 @@ export default function Form(): JSX.Element {
 
     return (
       <>
-        <form onSubmit={registerUser}>
-            <label htmlFor="email">E-Mail</label>
-            <input id="email" name="email" type="mail" required />
-            <label htmlFor="password">Contraseña</label>
-            <input id="password" name="password" type="password" required />
-            <label htmlFor="verifyPassword">Repetir contraseña</label>
-            <input id="verifyPassword" name="verifyPassword" type="password" required/>
-            <button type="submit">Registrarse</button>
+        <form onSubmit={registerUser} className={formStyle.form}>
+        <div className={formStyle.inputContainer}>
+            <FontAwesomeIcon icon={faEnvelope} className={formStyle.inputIcon} />
+            <input id="email" name="email" type="mail" className={formStyle.input} placeholder="Escribe tu e-mail" />
+          </div>
+          <div className={formStyle.inputContainer}>
+            <FontAwesomeIcon icon={faLock} className={formStyle.inputIcon} />
+            <input id="password" name="password" type="password" className={formStyle.input} placeholder="Escribe tu contraseña" />
+          </div>
+          <div className={formStyle.inputContainer}>
+            <FontAwesomeIcon icon={faLock} className={formStyle.inputIcon} />
+            <input id="confirmPassword" name="confirmPassword" type="password" className={formStyle.input} placeholder="Repite tu contraseña" />
+          </div>
+          <div className={formStyle.inputContainer}>
+            <FontAwesomeIcon icon={faGlobeAmericas} className={formStyle.inputIcon} />
+            <input id="location" name="location" type="password" className={formStyle.input} placeholder="¿De dónde sos?" />
+          </div>
+          <div className={formStyle.checkboxContainer} onClick={() => setIsCriticUser(!isCriticUser)}>
+            <input id="location" name="location" type="checkbox" className={formStyle.checkbox}/> 
+              {isCriticUser 
+              ? <p className={formStyle.checkboxText}>Soy crítico profesional de películas y series 🤙😎🤙</p>  
+              : <p className={formStyle.checkboxText}>No soy crítico profesional de películas y series</p> }
+          </div>
+          <button type="submit" className={formStyle.submit}>Registrarse</button>
         </form>
       </>
     )

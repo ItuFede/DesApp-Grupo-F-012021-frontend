@@ -8,7 +8,7 @@ export default function SignUp() {
 
     return (
       <AuthPage
-        subtitle={<p className={styles.authPageSubtitle}>Registrarse</p>}
+        subtitle={<></>}
         component={
           <>
             <div className={styles.card}>
