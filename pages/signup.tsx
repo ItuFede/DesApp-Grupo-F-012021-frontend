@@ -3,7 +3,7 @@ import React from 'react'
 import SignUpForm from '../components/SignUpForm'
 import Link from 'next/link'
 import AuthPage from '../pageComponents/AuthPage'
-import { DictionaryContext } from '../contexts/dictionary/DictionaryContext'
+import { DictionaryContext } from '../contexts/DictionaryContext'
 import { useContext } from 'react'
 
 export default function SignUp() {

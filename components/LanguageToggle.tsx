@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { DictionaryContext } from '../contexts/dictionary/DictionaryContext'
+import { DictionaryContext } from '../contexts/DictionaryContext'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import styles from '../styles/Meta.module.css'
 

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import React, { useContext } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { DictionaryContext } from '../contexts/dictionary/DictionaryContext';
+import { DictionaryContext } from '../contexts/DictionaryContext';
 
 export default function Page(props): JSX.Element {
     const dictionaryState = useContext(DictionaryContext)

@@ -8,7 +8,7 @@ export const useLocalStorage = () => {
         if (item) {
             item = JSON.parse(item)
         } 
-        console.log(`Get item ${key}: `, item?.id)
+        
         return item
     }
 

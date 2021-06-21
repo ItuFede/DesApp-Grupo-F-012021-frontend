@@ -1,7 +1,7 @@
 import { faEnvelope, faLock, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useContext } from 'react'
-import { DictionaryContext } from '../contexts/dictionary/DictionaryContext'
+import { DictionaryContext } from '../contexts/DictionaryContext'
 import formStyle from '../styles/Forms.module.css'
 
 export default function SignUpForm(): JSX.Element {

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import formStyle from '../styles/Forms.module.css'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
-import { DictionaryContext } from '../contexts/dictionary/DictionaryContext';
+import { DictionaryContext } from '../contexts/DictionaryContext';
 import { useContext } from 'react';
 
 export default function LoginForm(): JSX.Element {

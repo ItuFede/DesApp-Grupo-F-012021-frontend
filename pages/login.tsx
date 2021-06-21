@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import Link from 'next/link'
 import AuthPage from '../pageComponents/AuthPage'
 import LoginForm from '../components/LoginForm'
-import { DictionaryContext } from '../contexts/dictionary/DictionaryContext'
+import { DictionaryContext } from '../contexts/DictionaryContext'
 
 
 export default function Login(): JSX.Element {

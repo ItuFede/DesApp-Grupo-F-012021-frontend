@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React, { useContext } from 'react'
 import styles from '../styles/Meta.module.css'
 import AuthPage from './AuthPage'
-import { DictionaryContext } from '../contexts/dictionary/DictionaryContext'
+import { DictionaryContext } from '../contexts/DictionaryContext'
 
 export default function WelcomePage(): JSX.Element {
     const dictionaryState = useContext(DictionaryContext)

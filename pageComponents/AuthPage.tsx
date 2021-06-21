@@ -3,7 +3,7 @@ import Head from 'next/head';
 import React, {useContext} from 'react';
 import BigHeader from '../components/BigHeader';
 import LanguageToggle from '../components/LanguageToggle';
-import { DictionaryContext } from '../contexts/dictionary/DictionaryContext';
+import { DictionaryContext } from '../contexts/DictionaryContext';
 import styles from '../styles/Meta.module.css'
 
 export default function AuthPage(props): JSX.Element {
