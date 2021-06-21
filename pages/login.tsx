@@ -1,11 +1,13 @@
 import styles from '../styles/Meta.module.css'
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import AuthPage from '../pageComponents/AuthPage'
 import LoginForm from '../components/LoginForm'
+import { DictionaryContext } from '../contexts/dictionary/DictionaryContext'
 
 
 export default function Login(): JSX.Element {
+  const dictionaryState = useContext(DictionaryContext)
 
     return (
       <AuthPage
@@ -17,7 +19,7 @@ export default function Login(): JSX.Element {
             </div>
 
             <Link href="/">
-              <a className={styles.outsideCardBtn}>Volver</a>
+              <a className={styles.outsideCardBtn}>{dictionaryState.dictionary.signup.form.backBtn}</a>
             </Link>
           </>
       }/>

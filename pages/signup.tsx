@@ -3,8 +3,11 @@ import React from 'react'
 import SignUpForm from '../components/SignUpForm'
 import Link from 'next/link'
 import AuthPage from '../pageComponents/AuthPage'
+import { DictionaryContext } from '../contexts/dictionary/DictionaryContext'
+import { useContext } from 'react'
 
 export default function SignUp() {
+  const dictionaryState = useContext(DictionaryContext)
 
     return (
       <AuthPage
@@ -16,7 +19,7 @@ export default function SignUp() {
             </div>
 
             <Link href="/">
-              <a className={styles.outsideCardBtn}>Volver</a>
+              <a className={styles.outsideCardBtn}>{dictionaryState.dictionary.signup.form.backBtn}</a>
             </Link>
           </>
       }/>

@@ -1,25 +1,28 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from '../styles/Meta.module.css'
 import AuthPage from './AuthPage'
+import { DictionaryContext } from '../contexts/dictionary/DictionaryContext'
 
 export default function WelcomePage(): JSX.Element {
+    const dictionaryState = useContext(DictionaryContext)
+
     return(
         <AuthPage
             subtitle={        
             <p className={styles.authPageSubtitle}>
-                ¡Bienvenido! <br />
-                ¿Estás preparado para recomendar tus películas y series favoritas a todo el mundo?
+                {dictionaryState.dictionary.welcome.subtitle1} <br />
+                {dictionaryState.dictionary.welcome.subtitle2}
             </p>
             }
             component={
             <div className={styles.card}>
                 <Link href="/login">
-                <a>Iniciar sesión</a>
+                <a>{dictionaryState.dictionary.login.form.submit}</a>
                 </Link>
 
                 <Link href="/signup">
-                <a>Registrarse</a>
+                <a>{dictionaryState.dictionary.signup.form.submit}</a>
                 </Link>
             </div>
         }/>

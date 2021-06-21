@@ -1,4 +1,5 @@
 export const dictionary = {
+    id: 'ES_AR',
     meta: {
         headDescription: '¡Puntuá tus películas y series favoritas y encontrá recomendaciones!'
     },

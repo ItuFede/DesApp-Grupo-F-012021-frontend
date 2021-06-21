@@ -1,4 +1,5 @@
 export const dictionary = {
+    id: 'EN_US',
     meta: {
         headDescription: 'Rank your favorite movies and series and find recommendations!'
     },

@@ -82,3 +82,19 @@
     font-size: 2rem;
     font-weight: 900;
 }
+
+.englishBtn, .spanishBtn {
+    font-size: 2rem;
+    margin: 0.5rem;
+}
+
+.englishBtn:hover, .spanishBtn:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.languageToggleContainer {
+    display: flex;
+    margin-right: 1rem;
+    justify-content: flex-end;
+}
