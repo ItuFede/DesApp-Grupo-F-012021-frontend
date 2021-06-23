@@ -5,7 +5,6 @@ export const dictionary = {
     },
     welcome: {
         subtitle1: 'Welcome!',
-        subtitle2: 'Are you ready to recommend your favorite movies and series to the world?'
     },
     login: {
         form: {

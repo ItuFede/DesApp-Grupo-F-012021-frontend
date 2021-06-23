@@ -3,11 +3,11 @@ import styles from '../styles/Meta.module.css'
 
 export default function Header(): JSX.Element {
     return(
-      <div className={styles.containerHeadertitle}>
+      <header className={styles.containerHeadertitle}>
         <a className={styles.headertitle} href="/">
-          Re-Seña!
+          Re-Seña! API
         </a>
         <hr/>
-      </div>
+      </header>
     )
 }

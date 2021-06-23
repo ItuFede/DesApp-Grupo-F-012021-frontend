@@ -1,15 +1,20 @@
 import { faEnvelope, faLock, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import { DictionaryContext } from '../contexts/DictionaryContext'
 import useAuthentication from '../hooks/useAuthentication'
 import { SignUpCredentials } from '../models/SignUpCredentials'
 import formStyle from '../styles/Forms.module.css'
+import Router from 'next/router'
+import useForm from '../hooks/useForm'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 export default function SignUpForm(): JSX.Element {
   const dictionaryState = useContext(DictionaryContext)
   const [isCriticUser, setIsCriticUser] = useState(false)
+  const {storageDelete} = useLocalStorage()
+  const {useInputHandler, validSignupCredentials} = useForm()
   const { signup } = useAuthentication()
   const [signupData, setSignupData] = useState({
     email: '',
@@ -17,6 +22,11 @@ export default function SignUpForm(): JSX.Element {
     confirmPassword: '',
     location: '',
   })
+
+  useEffect(() => {
+    storageDelete('msg_registered');
+    console.info('Removed msg_deleted key from local storage');
+  }, []);
 
   const registerUser = async event => {
     event.preventDefault()
@@ -28,15 +38,11 @@ export default function SignUpForm(): JSX.Element {
       language: dictionaryState.dictionary.id
     }
 
-    if (signupData.password !== signupData.confirmPassword) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Your passwords don\'t match!',
-        text: 'Please verify and try again.'
-      });
-    } else {
+    if (validSignupCredentials(signupCredentials, signupData.confirmPassword)) {
       signup(signupCredentials)
-        .then((res) => console.log(signupCredentials))
+        .then((res) => {
+          Router.push('/login?registered_redirect=true')
+        })
         .catch((err) => {
           switch (err.response.status) {
             default: {
@@ -52,10 +58,7 @@ export default function SignUpForm(): JSX.Element {
   }
 
   const handleInputChange = (event) => {
-    setSignupData({
-      ...signupData,
-      [event.target.name] : event.target.value
-    })
+    useInputHandler(event, signupData, setSignupData)
   }
 
   return (

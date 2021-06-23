@@ -10,7 +10,6 @@ export default function MyApp({ Component, pageProps }) {
   return(
     <DictionaryContextProvider>
       <Component { ...pageProps } />
-      <MainPage/>
     </DictionaryContextProvider>
   )
 }

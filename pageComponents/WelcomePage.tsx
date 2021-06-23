@@ -11,8 +11,7 @@ export default function WelcomePage(): JSX.Element {
         <AuthPage
             subtitle={        
             <p className={styles.authPageSubtitle}>
-                {dictionaryState.dictionary.welcome.subtitle1} <br />
-                {dictionaryState.dictionary.welcome.subtitle2}
+                {dictionaryState.dictionary.welcome.subtitle1}
             </p>
             }
             component={

@@ -6,7 +6,11 @@ export const useLocalStorage = () => {
         }
 
         if (item) {
-            item = JSON.parse(item)
+            try {
+                item = JSON.parse(item)
+            } catch (error) {
+                console.warn('[useLocalStorage] ', `Element ${key} is not an object.`)
+            }
         } 
         
         return item
@@ -18,9 +22,23 @@ export const useLocalStorage = () => {
         }
     }
 
+    const storageDelete = (key: string) => {
+        if (typeof window !== 'undefined') {
+            window.localStorage.removeItem(key)
+        }
+    }
+
+    const storageClear = () => {
+        if (typeof window !== 'undefined') {
+            window.localStorage.clear()
+        }
+    }
+
     return {
         storageGet,
-        storageSet
+        storageSet,
+        storageDelete,
+        storageClear
     }
 }
 

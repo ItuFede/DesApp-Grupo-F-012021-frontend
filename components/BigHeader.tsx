@@ -7,7 +7,7 @@ export default function BigHeader(): JSX.Element {
     return(
     <div className="header">
         <h1 className={styles.title}>
-        Re-Seña!
+        Re-Seña! API
         </h1>
     </div>
     )

@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { DictionaryContext } from '../contexts/DictionaryContext';
+import styles from '../styles/Page.module.css'
 
 export default function Page(props): JSX.Element {
     const dictionaryState = useContext(DictionaryContext)
@@ -14,11 +15,13 @@ export default function Page(props): JSX.Element {
             <title>Re-Seña!</title>
             <meta name="description" content={dictionaryState.dictionary.meta.headDescription} />
         </Head>
-        <main className="page-wrapper">
+        <html>
             <Header/>
-            {props.component}
+            <main className={styles.pageWrapper}>
+                {props.component}
+            </main>
             <Footer/>
-        </main>
+        </html>
     </>
     )
 }
