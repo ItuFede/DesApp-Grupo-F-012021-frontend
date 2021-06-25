@@ -1,4 +1,4 @@
-import { faEnvelope, faLock, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faLock, faFilm } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useContext, useEffect } from 'react'
 import Swal from 'sweetalert2'
@@ -9,10 +9,11 @@ import formStyle from '../styles/Forms.module.css'
 import Router from 'next/router'
 import useForm from '../hooks/useForm'
 import { useLocalStorage } from '../hooks/useLocalStorage'
+import { Dropdown } from 'react-dropdown-now';
+import 'react-dropdown-now/style.css';
 
 export default function SignUpForm(): JSX.Element {
   const dictionaryState = useContext(DictionaryContext)
-  const [isCriticUser, setIsCriticUser] = useState(false)
   const {storageDelete} = useLocalStorage()
   const {useInputHandler, validSignupCredentials} = useForm()
   const { signup } = useAuthentication()
@@ -20,7 +21,7 @@ export default function SignUpForm(): JSX.Element {
     email: '',
     password: '',
     confirmPassword: '',
-    location: '',
+    platform: '',
   })
 
   useEffect(() => {
@@ -33,8 +34,7 @@ export default function SignUpForm(): JSX.Element {
     const signupCredentials: SignUpCredentials = { 
       username: signupData.email, 
       password: signupData.password,
-      location: signupData.location,
-      isCriticUser: isCriticUser,
+      platform: selectedPlatform,
       language: dictionaryState.dictionary.id
     }
 
@@ -61,6 +61,12 @@ export default function SignUpForm(): JSX.Element {
     useInputHandler(event, signupData, setSignupData)
   }
 
+  const dropdownPlatforms = [
+    'Netflix', 'Amazon Prime', 'Disney Plus'
+  ]
+
+  const [selectedPlatform, setSelectedPlatform] = useState('')
+
   return (
     <>
       <form onSubmit={registerUser} className={formStyle.form}>
@@ -77,14 +83,12 @@ export default function SignUpForm(): JSX.Element {
           <input id="confirmPassword" onChange={handleInputChange} name="confirmPassword" type="password" className={formStyle.input} placeholder={dictionaryState.dictionary.signup.form.confirmPassword} />
         </div>
         <div className={formStyle.inputContainer}>
-          <FontAwesomeIcon icon={faGlobeAmericas} className={formStyle.inputIcon} />
-          <input id="location" onChange={handleInputChange} name="location" type="text" className={formStyle.input} placeholder={dictionaryState.dictionary.signup.form.location} />
-        </div>
-        <div className={formStyle.checkboxContainer} onClick={() => setIsCriticUser(!isCriticUser)}>
-          <input id="isCritic" onChange={handleInputChange} name="isCritic" type="checkbox" className={formStyle.checkbox}/> 
-            {isCriticUser 
-            ? <p className={formStyle.checkboxText}>{dictionaryState.dictionary.signup.form.isCriticMsg}</p>  
-            : <p className={formStyle.checkboxText}>{dictionaryState.dictionary.signup.form.isNotCriticMsg}</p> }
+          <FontAwesomeIcon icon={faFilm} className={formStyle.inputIcon} />
+        <Dropdown
+          options={dropdownPlatforms}
+          onChange={(selected) => setSelectedPlatform(selected.value)}
+          placeholder={dictionaryState.dictionary.signup.form.platform}
+        />
         </div>
         <button type="submit" className={formStyle.submit}>{dictionaryState.dictionary.signup.form.submit}</button>
       </form>

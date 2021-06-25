@@ -3,7 +3,6 @@
 import '../styles/globals.css'
 import React from 'react'
 import { DictionaryContextProvider } from '../contexts/DictionaryContext'
-import MainPage from '../pageComponents/MainPage'
 
 export default function MyApp({ Component, pageProps }) {
 

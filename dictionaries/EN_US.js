@@ -16,11 +16,23 @@ export const dictionary = {
             email: 'Write your e-mail',
             password: 'Write your password',
             confirmPassword: 'Confirm your password',
-            location: 'Where are you from?',
+            platform: 'Which one is your Platform?',
             submit: 'Sign Up',
             backBtn: 'Go Back',
             isCriticMsg: 'I am a profesional movies and series critic 🤙😎🤙',
             isNotCriticMsg: 'I am not a profesional movies and series critic'
         },
     },
+    main: {
+        userData: {
+            clipboardBtnTitle: 'Copiar',
+            clipboardMsgTitle: 'Copied API key to Clipboard!',
+            clipboardMsg: 'Remember that API key expires after one hour.'
+        },
+        documentation: 'API Documentation',
+        notifications: 'Notifications',
+        metrics: 'Metrics',
+        logout: 'Log Out'
+    },
+    footer: 'Group F - 1st Semester - Application Development - Universidad Nacional de Quilmes © 2021'
 }

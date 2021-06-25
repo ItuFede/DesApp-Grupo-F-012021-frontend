@@ -29,10 +29,7 @@ export default function useForm() {
             signupCredentials.password === confirmPassword &&
             inputNotEmpty(signupCredentials.username) &&
             inputNotEmpty(signupCredentials.password) &&
-            signupCredentials.isCriticUser !== undefined &&
-            signupCredentials.isCriticUser !== null &&
-            inputNotEmpty(signupCredentials.language) &&
-            inputNotEmpty(signupCredentials.location) 
+            inputNotEmpty(signupCredentials.platform) 
         )
 
         if (signupCredentials.password !== confirmPassword) {

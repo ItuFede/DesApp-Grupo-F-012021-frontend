@@ -27,19 +27,56 @@
 }
 
 .userCard {
-    background-color: rgb(219, 218, 218);
+    background-color: rgb(255, 255, 255);
     border-radius: 1rem;
     margin-right: 5rem;
+    padding-bottom: 1rem;
 }
 
 .userCardHeader {
     color: black;
-    margin-left: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .apiKeyBox {
     background-color: rgb(49, 49, 49);
     width: 75%;
     margin: auto;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 8px;
+}
+
+.apiKeyText {
+    text-overflow: ellipsis;
+    width: 600px;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left: 2rem;
+}
+
+.copyBtn {
+    margin-right: 2rem;
+    background-color: var(--colorPrimary);
+    padding: 0.8rem;
+    border-radius: 5px;
+}
+
+.copyBtn:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+    margin-right: 2rem;
+}
+
+.copyBtn:active {
+    background-color: var(--colorSecondary);
+    transform: scale(1);
+}
+
+.apiKeyTextWrapper {
+    width: 50%;
 }

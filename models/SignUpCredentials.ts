@@ -1,7 +1,6 @@
 export interface SignUpCredentials {
     username: string;
     password: string;
-    location: string;
+    platform: string;
     language: string;
-    isCriticUser: boolean;
 }

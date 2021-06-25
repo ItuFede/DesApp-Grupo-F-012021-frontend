@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap');
+
+.platform  {
+    margin: 0 1rem;
+    padding: 0 0.8rem;
+    padding-top: 0.3rem;
+}
+
+.netflix {
+    color: red;
+    background-color: black;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3rem;
+}
+
+.amazonPrime {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.5px;
+    padding-bottom: 0.4rem;
+    font-weight: bolder;
+    color: #00AAE5;
+    background-color: black;
+}
+
+.disneyPlus {
+    font-family: 'Mouse Memoirs', sans-serif;
+    color: white;
+    background-color: #1D3983;
+    padding-bottom: 0.4rem;
+}
