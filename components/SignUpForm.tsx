@@ -48,8 +48,8 @@ export default function SignUpForm(): JSX.Element {
             default: {
               Swal.fire({
                 icon: 'error',
-                title: 'Something went wrong',
-                text: 'Please try again later.',
+                title: dictionaryState.dictionary.swal.defaultError.title,
+                text: dictionaryState.dictionary.swal.defaultError.text,
               });
             }
           }

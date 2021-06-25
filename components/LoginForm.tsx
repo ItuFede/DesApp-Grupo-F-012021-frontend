@@ -32,15 +32,15 @@ export default function LoginForm(): JSX.Element {
             case 401: {
               Swal.fire({
                 icon: 'error',
-                title: 'Invalid e-mail or password',
-                text: 'Please verify your credentials and try again.',
+                title: dictionaryState.dictionary.swal.loginError.title,
+                text: dictionaryState.dictionary.swal.loginError.text,
               });
             } break;
             default: {
               Swal.fire({
                 icon: 'error',
-                title: 'Something went wrong',
-                text: 'Please try again later.',
+                title: dictionaryState.dictionary.swal.defaultError.title,
+                text: dictionaryState.dictionary.swal.defaultError.text,
               });
             }
           }
@@ -54,8 +54,8 @@ export default function LoginForm(): JSX.Element {
       if(!msg_registered) {
         Swal.fire({
           icon: 'success',
-          title: '¡Tu registro ha sido un éxito!',
-          text: 'Ya puedes iniciar sesión.',
+          title: dictionaryState.dictionary.swal.signupSuccess.title,
+          text: dictionaryState.dictionary.swal.signupSuccess.text,
         });
         storageSet('msg_registered', 'true')
       }

@@ -19,8 +19,6 @@ export const dictionary = {
             platform: 'Which one is your Platform?',
             submit: 'Sign Up',
             backBtn: 'Go Back',
-            isCriticMsg: 'I am a profesional movies and series critic 🤙😎🤙',
-            isNotCriticMsg: 'I am not a profesional movies and series critic'
         },
     },
     main: {
@@ -34,5 +32,27 @@ export const dictionary = {
         metrics: 'Metrics',
         logout: 'Log Out'
     },
-    footer: 'Group F - 1st Semester - Application Development - Universidad Nacional de Quilmes © 2021'
+    footer: 'Group F - 1st Semester - Application Development - Universidad Nacional de Quilmes © 2021',
+    swal: {
+        defaultError: {
+            title: 'Something went wrong',
+            text : 'Please try again later.'
+        },
+        loginError: {
+            title: 'Invalid e-mail or password',
+            text: 'Please verify your credentials and try again.'
+        },
+        signupError: {
+            title: 'Invalid e-mail, password or platform',
+            text: 'Please verify your credentials and try again.'
+        },
+        passwordError: {
+            title: 'Your passwords don\'t match!',
+            text: 'Please verify and try again.'
+        },
+        signupSuccess: {
+            title: 'You\'ve registered succesfuly!',
+            text: 'You can now log in.'
+        }
+    }
 }

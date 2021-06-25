@@ -15,13 +15,13 @@ export default function Page(props): JSX.Element {
             <title>Re-Seña!</title>
             <meta name="description" content={dictionaryState.dictionary.meta.headDescription} />
         </Head>
-        <html>
+        <div>
             <Header/>
             <main className={styles.pageWrapper}>
                 {props.component}
             </main>
             <Footer/>
-        </html>
+        </div>
     </>
     )
 }

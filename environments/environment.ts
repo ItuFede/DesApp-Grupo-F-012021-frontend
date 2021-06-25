@@ -1,4 +1,4 @@
 export const environment = {
-    API_URL: 'https://desappgrupof.heroku.com/'
+    API_URL: 'http://localhost:8080/'
 }
 

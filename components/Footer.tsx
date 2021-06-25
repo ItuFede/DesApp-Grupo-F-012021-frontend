@@ -1,11 +1,13 @@
 import React from 'react'
-import styles from '../styles/Meta.module.css'
+import { useContext } from 'react'
+import { DictionaryContext } from '../contexts/DictionaryContext'
 
 export default function Footer(): JSX.Element {
+  const dictionaryState = useContext(DictionaryContext)
     return(
         <footer>
           <hr/>
-          Grupo F - 1er Semestre - Desarrollo de Aplicaciones - Universidad Nacional de Quilmes © 2021
+          {dictionaryState.dictionary.footer}
         </footer>
     )
 }

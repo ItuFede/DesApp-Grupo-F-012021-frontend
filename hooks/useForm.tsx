@@ -1,8 +1,12 @@
 import Swal from "sweetalert2"
+import { DictionaryContext } from "../contexts/DictionaryContext"
 import { LoginCredentials } from "../models/LoginCredentials"
 import { SignUpCredentials } from "../models/SignUpCredentials"
+import { useContext } from "react"
 
 export default function useForm() {
+  const dictionaryState = useContext(DictionaryContext)
+
     const inputNotEmpty = (input: string) => {
         return input !== undefined && input !== null && input !== ''
       }
@@ -16,8 +20,8 @@ export default function useForm() {
         if(!validCredentials) {
             Swal.fire({
                 icon: 'error',
-                title: 'Invalid e-mail or password',
-                text: 'Please verify your credentials and try again.',
+                title: dictionaryState.dictionary.swal.loginError.title,
+                text: dictionaryState.dictionary.swal.loginError.text,
             });
         }
         
@@ -35,16 +39,16 @@ export default function useForm() {
         if (signupCredentials.password !== confirmPassword) {
             Swal.fire({
             icon: 'error',
-            title: 'Your passwords don\'t match!',
-            text: 'Please verify and try again.'
+            title: dictionaryState.dictionary.swal.passwordError.title,
+            text: dictionaryState.dictionary.swal.passwordError.text
             });
         }
 
         if(signupCredentials.password === confirmPassword && !validCredentials) {
             Swal.fire({
                 icon: 'error',
-                title: 'Invalid e-mail, password or location',
-                text: 'Please verify your credentials and try again.',
+                title: dictionaryState.dictionary.swal.signupError.title,
+                text: dictionaryState.dictionary.swal.signupError.text,
             });
         }
 
