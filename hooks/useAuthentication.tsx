@@ -37,7 +37,7 @@ export default function useAuthentication() {
         const payload = decode(token)
         return {
             email: payload.sub,
-            platform: 'Netflix',
+            platform: payload.platform,
             apiKey: token
         }
     }
