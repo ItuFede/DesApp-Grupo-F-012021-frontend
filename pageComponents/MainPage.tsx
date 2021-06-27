@@ -10,12 +10,11 @@ import { DictionaryContext } from '../contexts/DictionaryContext';
 
 export default function MainPage(): JSX.Element {
     const {logOut, userDataFromToken} = useAuthentication()
-  const dictionaryState = useContext(DictionaryContext)
+    const dictionaryState = useContext(DictionaryContext)
     const [userData, setUserData] = useState({email: '', platform: '', apiKey: ''})
 
     useEffect(() => {
         const user: any = userDataFromToken()
-        user.platform = 'Netflix' 
         setUserData(user)
     }, [])
 

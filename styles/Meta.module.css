@@ -1,3 +1,10 @@
+.footerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .headertitle {
     margin: 1em 0.1em;
     padding: 0 0.55em 0 0.5em;
@@ -23,6 +30,8 @@
 .containerHeadertitle {
     margin-top: 0.35em;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .title {

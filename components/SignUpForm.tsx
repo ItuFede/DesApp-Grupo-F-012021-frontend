@@ -11,12 +11,16 @@ import useForm from '../hooks/useForm'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { Dropdown } from 'react-dropdown-now';
 import 'react-dropdown-now/style.css';
+import { usePlatform } from '../hooks/usePlatform'
 
 export default function SignUpForm(): JSX.Element {
   const dictionaryState = useContext(DictionaryContext)
   const {storageDelete} = useLocalStorage()
   const {useInputHandler, validSignupCredentials} = useForm()
   const { signup } = useAuthentication()
+  const { getPlatforms } = usePlatform()
+  const [availiablePlatforms, setAvailablePlatforms] = useState<any[]>([])
+  
   const [signupData, setSignupData] = useState({
     email: '',
     password: '',
@@ -25,6 +29,7 @@ export default function SignUpForm(): JSX.Element {
   })
 
   useEffect(() => {
+    getPlatforms().then((platforms) => setAvailablePlatforms(platforms))
     storageDelete('msg_registered');
     console.info('Removed msg_deleted key from local storage');
   }, []);
@@ -61,10 +66,6 @@ export default function SignUpForm(): JSX.Element {
     useInputHandler(event, signupData, setSignupData)
   }
 
-  const dropdownPlatforms = [
-    'Netflix', 'Amazon Prime', 'Disney Plus'
-  ]
-
   const [selectedPlatform, setSelectedPlatform] = useState('')
 
   return (
@@ -85,7 +86,7 @@ export default function SignUpForm(): JSX.Element {
         <div className={formStyle.inputContainer}>
           <FontAwesomeIcon icon={faFilm} className={formStyle.inputIcon} />
         <Dropdown
-          options={dropdownPlatforms}
+          options={availiablePlatforms}
           onChange={(selected) => setSelectedPlatform(selected.value)}
           placeholder={dictionaryState.dictionary.signup.form.platform}
         />
