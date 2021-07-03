@@ -87,7 +87,7 @@ export default function SignUpForm(): JSX.Element {
           <FontAwesomeIcon icon={faFilm} className={formStyle.inputIcon} />
         <Dropdown
           options={availiablePlatforms}
-          onChange={(selected) => setSelectedPlatform(selected.value)}
+          onChange={(selected: any) => setSelectedPlatform(selected.value)}
           placeholder={dictionaryState.dictionary.signup.form.platform}
         />
         </div>

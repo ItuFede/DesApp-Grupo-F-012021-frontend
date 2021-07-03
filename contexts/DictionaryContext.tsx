@@ -7,7 +7,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage'
 
 export const DictionaryContext = React.createContext({
   dictionary: ES_AR,
-  setDictionary: () => {}
+  setDictionary: (string) => {}
 })
 
 export const DictionaryContextProvider = (props) => {
