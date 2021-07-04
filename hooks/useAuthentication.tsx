@@ -36,8 +36,8 @@ export default function useAuthentication() {
         const token: string | null = storageGet('access_token')
         const payload = decode(token)
         return {
-            email: payload.sub,
-            platform: payload.platform,
+            email: payload?.sub,
+            platform: payload?.platform,
             apiKey: token
         }
     }

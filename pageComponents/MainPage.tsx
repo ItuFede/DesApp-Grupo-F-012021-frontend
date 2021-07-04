@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Swal from 'sweetalert2';
 import PlatformLogo from '../components/PlatformLogo';
 import { DictionaryContext } from '../contexts/DictionaryContext';
+import { environment } from '../environments/environment';
 
 export default function MainPage(): JSX.Element {
     const {logOut, userDataFromToken} = useAuthentication()
@@ -24,7 +25,7 @@ export default function MainPage(): JSX.Element {
     }
 
     const openDocumentation = () => {
-        console.log('wip swagger')
+        Router.push(environment.SWAGGER_URL)
     }
 
     const copyToClipboard = () => {

@@ -1,0 +1,21 @@
+.metricsContainer {
+    background: black;
+    padding: 2em;
+    min-height: 300px;
+}
+
+.metric {
+    color: yellowgreen;
+}
+
+.metricError {
+    color: var(--colorError) !important;
+}
+
+.notificationsContainer {
+
+}
+
+.notification {
+    
+}
