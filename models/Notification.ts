@@ -4,4 +4,5 @@ export interface Notification {
     reviewShortText: string;
     reviewLongText: string;
     reviewScore: number;
+    mediaId: string;
 }

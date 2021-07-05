@@ -9,7 +9,7 @@ export const useLocalStorage = () => {
             try {
                 item = JSON.parse(item)
             } catch (error) {
-                console.warn('[useLocalStorage] ', `Element ${key} is not an object.`)
+                // console.warn('[useLocalStorage] ', `Element ${key} is not an object.`)
             }
         } 
         
