@@ -15,7 +15,6 @@ export default function MetricsPage(): JSX.Element {
     const username = userDataFromToken().email || ""
     const query = firebase.firestore()
         .collection('metrics')
-        .limit(25)
         .where('user', '==', username)
 
     const [metrics] = useCollectionData(query, {idField: 'id'})
@@ -34,8 +33,8 @@ export default function MetricsPage(): JSX.Element {
     const generateMetricsMessages = () => {
         return shownMetrics.map((metric: Metric) => {
             return isErrorLog(metric.log) 
-                ? <div className={styles.metricError}>{metric.log}</div>
-                : <div className={styles.metric}>{metric.log}</div>
+                ? <p className={styles.metricError}>{metric.log}</p>
+                : <p className={styles.metric}>{metric.log}</p>
         })
     }
 

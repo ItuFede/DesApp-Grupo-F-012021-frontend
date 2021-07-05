@@ -1,0 +1,37 @@
+.notificationCard {
+    background-color: white;
+    color: black;
+    width: 50%;
+    padding: 2em;
+    margin: 1em;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.notifCardTop {
+    display: flex;
+    justify-content: start;
+}
+
+.notifCardBottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.score {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin-left: 0.2em;
+    margin-right: 1.3em;
+    align-self: center;
+    text-align: center;
+}
+
+.shortText, .author, .movieId {
+    font-weight: bolder;
+}
+
+.author, .movieId {
+    font-style: italic;
+}

@@ -1,12 +1,21 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
+import NotificationCard from '../components/NotificationCard'
 import useFirebase from '../firebase/useFirebase'
 import useAuthentication from '../hooks/useAuthentication'
+import * as _ from 'lodash';
 
 export default function NotificationPage(): JSX.Element {
     const { userDataFromToken } = useAuthentication()
-    const [shownNotifications, setShownNotifications] = useState([])
+    const [shownNotifications, setShownNotifications] = useState([
+        {
+            author: "",
+            reviewShortText: "...Loading...",
+            reviewLongText: "",
+            mediaId: "",
+        }
+    ])
     const [subscribedMedia, setSubscribedMedia] = useState(["ignore this element"])
     const [username, setUsername] = useState(userDataFromToken().email)
     const firebase = useFirebase()
@@ -21,21 +30,21 @@ export default function NotificationPage(): JSX.Element {
 
     const notificationsQuery = firebase.firestore()
         .collection('notifications')
-        .limit(10)
         .where('mediaId', 'in', subscribedMedia)
 
     const [notifications]: any = useCollectionData(notificationsQuery, {idField: 'id'})
     
     useEffect(() => {
         if (notifications?.length) {
-            setShownNotifications(notifications)
+            const orderedNotifs = _.sortBy(notifications, [(o) => { return o.millsTime; }]) 
+            setShownNotifications(orderedNotifs)
         }
     }, [notifications])
 
     return(
     <>
         <div>
-            {shownNotifications && shownNotifications.map((notif: Notification) => <div>{notif.id} ------ {notif.author} ------ {notif.reviewShortText} ------ {notif.millsTime}</div> )}
+            {shownNotifications && shownNotifications.map((notif: any) => <NotificationCard notification={notif} /> )}
         </div>
     </>
     )

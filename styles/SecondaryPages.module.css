@@ -6,16 +6,13 @@
 
 .metric {
     color: yellowgreen;
+    white-space: normal;
+    word-break: break-all;
 }
 
 .metricError {
     color: var(--colorError) !important;
+    white-space: normal;
+    word-break: break-all;
 }
 
-.notificationsContainer {
-
-}
-
-.notification {
-    
-}
