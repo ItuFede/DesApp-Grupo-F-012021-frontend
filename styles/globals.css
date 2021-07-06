@@ -2,8 +2,10 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #252525;
+  color: white;
 }
 
 a {
@@ -15,9 +17,43 @@ a {
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+}
+
 :root {
-  --colorPrimary: #005df3;
-  --colorSecondary: rgb(79, 2, 223);
-  --colorGradient: -webkit-linear-gradient(310deg, #005df3, rgb(79, 2, 223));
+  --colorPrimary: #3380fd;
+  --colorSecondary: #7342fb;
+  --colorGradient: -webkit-linear-gradient(310deg, var(--colorPrimary), var(--colorSecondary));
   --colorError: rgb(223, 90, 2);
+}
+
+.rdn, .rdn-control-placeholder, .rdn-drop {
+  font-size: 1rem;
+  font-weight: 600 !important;
+  color: #757575;
+}
+
+.rdn {
+  margin: 1em !important;
+}
+
+.rdn-control {
+  border-radius: 1rem !important;
+  background-color: #E8F0FE !important;
+  border: 0px solid black !important;
+  height: 3em;
+  width: 300px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.rdn-control-placeholder {
+  margin-top: 0.4em !important;
+}
+
+.rdn-control-arrow-icon {
+  transform: scale(1.5);
+  margin-right: 1rem;
+  margin-top: 0.4rem;
 }

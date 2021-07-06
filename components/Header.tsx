@@ -1,10 +1,21 @@
 import React from 'react'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Meta.module.css'
+import LanguageToggle from './LanguageToggle'
 
-export default function Header() {
+export default function Header(): JSX.Element {
     return(
-        <h1 className={styles.title}>
-          Re-Seña!
-        </h1>
+      <>
+      <header className={styles.containerHeadertitle}>
+        <div>
+          <a className={styles.headertitle} href="/">
+            Re-Seña! API
+          </a>
+        </div>
+        <div>
+          <LanguageToggle />
+        </div>
+      </header>
+      <hr/>
+      </>
     )
 }

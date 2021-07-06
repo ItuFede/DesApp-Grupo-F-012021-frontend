@@ -2,9 +2,13 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import '../styles/globals.css'
 import React from 'react'
+import { DictionaryContextProvider } from '../contexts/DictionaryContext'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+export default function MyApp({ Component, pageProps }) {
+
+  return(
+    <DictionaryContextProvider>
+      <Component { ...pageProps } />
+    </DictionaryContextProvider>
+  )
 }
-
-export default MyApp

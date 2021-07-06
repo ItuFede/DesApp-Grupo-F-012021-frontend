@@ -1,79 +1,86 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import AlertDialog from './AlertDialog';
+import formStyle from '../styles/Forms.module.css'
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
+import { DictionaryContext } from '../contexts/DictionaryContext';
+import { useContext } from 'react';
+import useAuthentication from '../hooks/useAuthentication';
+import { LoginCredentials } from '../models/LoginCredentials';
+import Swal from 'sweetalert2';
+import Router from 'next/router';
+import useForm from '../hooks/useForm';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
-const useStyles = makeStyles({
-    // createStyles({
-        input: {
-            fontSize: '1.8rem',
-            padding: '0.5rem',
-            borderRadius: '15px',
-            border: '1px solid var(--colorPrimary)',
-            margin: '1.3rem 0'
-        },
-        form: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-        },
-        submit: {
-            color: 'var(--colorPrimary)',
-            fontSize: '2rem',
-            fontWeight: 'bolder',
-            background: 'white',
-            border: '0px',
-            '&:hover': {
-                color: 'var(--colorSecondary)',
-                transform: 'scale(1.5)',
-            },
-        },
-    // })
-});
+export default function LoginForm(): JSX.Element {
+  const dictionaryState = useContext(DictionaryContext)
+  const {login} = useAuthentication();
+  const {storageGet, storageSet} = useLocalStorage();
+  const {useInputHandler, validLoginCredentials} = useForm()
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: ''
+  })
 
-export default function LoginForm() {
-  const classes = useStyles();
-  const [showAlert, setShowAlert] = useState(false);
-
-    const registerUser = async event => {
-      event.preventDefault()
-      setShowAlert(true)
-      const res = await fetch('/api/login', {
-        body: JSON.stringify({
-          name: event.target.name.value
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: 'POST'
-      })
-  
-      const result = await res.json()
-      console.log(result)
+  const loginUser = async event => {
+    event.preventDefault()
+    const loginCredentials: LoginCredentials = { username: loginData.email, password: loginData.password }
+    if (validLoginCredentials(loginCredentials)) {
+      login(loginCredentials)
+        .then((res) => Router.push('/'))
+        .catch((err) => {
+          switch (err.response.status) {
+            case 401: {
+              Swal.fire({
+                icon: 'error',
+                title: dictionaryState.dictionary.swal.loginError.title,
+                text: dictionaryState.dictionary.swal.loginError.text,
+              });
+            } break;
+            default: {
+              Swal.fire({
+                icon: 'error',
+                title: dictionaryState.dictionary.swal.defaultError.title,
+                text: dictionaryState.dictionary.swal.defaultError.text,
+              });
+            }
+          }
+        })
     }
+  }
 
-    return (
-      <>
-        {showAlert && <AlertDialog/>}
-        <form onSubmit={registerUser} className={classes.form}>
-            <label htmlFor="email">E-Mail</label>
-            <input id="email" name="email" type="mail" required className={classes.input} />
-            <label htmlFor="password">Contraseña</label>
-            <input id="password" name="password" type="password" required className={classes.input} />
-            <button type="submit" className={classes.submit}>Iniciar Sesión</button>
-        </form>
-      </>
-    )
+  const handleRegisterRedirect = () => {
+    if (typeof window !== 'undefined' && Router.query.registered_redirect) {
+      const msg_registered = storageGet('msg_registered');
+      if(!msg_registered) {
+        Swal.fire({
+          icon: 'success',
+          title: dictionaryState.dictionary.swal.signupSuccess.title,
+          text: dictionaryState.dictionary.swal.signupSuccess.text,
+        });
+        storageSet('msg_registered', 'true')
+      }
+    }
+  }
+
+  const handleInputChange = event => {
+    useInputHandler(event, loginData, setLoginData)
+  }
+  
+  handleRegisterRedirect();
+  
+  return (
+    <>
+      <form onSubmit={loginUser} className={formStyle.form} id="loginForm">
+        <div className={formStyle.inputContainer}>
+          <FontAwesomeIcon icon={faEnvelope} className={formStyle.inputIcon} />
+          <input onChange={handleInputChange} id="email" name="email" type="mail" className={formStyle.input} placeholder={dictionaryState.dictionary.signup.form.email} />
+        </div>
+        <div className={formStyle.inputContainer}>
+          <FontAwesomeIcon icon={faLock} className={formStyle.inputIcon} />
+          <input onChange={handleInputChange} id="password" name="password" type="password" className={formStyle.input} placeholder={dictionaryState.dictionary.signup.form.password} />
+        </div>
+        <button type="submit" className={formStyle.submit}>{dictionaryState.dictionary.login.form.submit}</button>
+      </form>
+    </>
+  )
 }

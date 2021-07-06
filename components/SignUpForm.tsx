@@ -1,68 +1,98 @@
-import { makeStyles } from '@material-ui/core';
-import React, { useState } from 'react'
-import AlertDialog from './AlertDialog';
+import { faEnvelope, faLock, faFilm } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState, useContext, useEffect } from 'react'
+import Swal from 'sweetalert2'
+import { DictionaryContext } from '../contexts/DictionaryContext'
+import useAuthentication from '../hooks/useAuthentication'
+import { SignUpCredentials } from '../models/SignUpCredentials'
+import formStyle from '../styles/Forms.module.css'
+import Router from 'next/router'
+import useForm from '../hooks/useForm'
+import { useLocalStorage } from '../hooks/useLocalStorage'
+import { Dropdown } from 'react-dropdown-now';
+import 'react-dropdown-now/style.css';
+import { usePlatform } from '../hooks/usePlatform'
 
-const useStyles = makeStyles({
-    // return {
-        input: {
-            fontSize: '1.8rem',
-            padding: '0.5rem',
-            borderRadius: '15px',
-            border: '1px solid var(--colorPrimary)',
-            margin: '1.3rem 0'
-        },
-        form: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-        },
-        submit: {
-            color: 'var(--colorPrimary)',
-            fontSize: '2rem',
-            fontWeight: 'bolder',
-            background: 'white',
-            border: '0px',
-            '&:hover': {
-                color: 'var(--colorSecondary)',
-                transform: 'scale(1.5)',
-            },
-        },
-    // }
-});
-
-export default function Form() {
-  const classes = useStyles();
-  const [showAlert, setShowAlert] = useState(false);
-
-    const registerUser = async event => {
-      event.preventDefault()
-      setShowAlert(true)
-      const res = await fetch('/api/signup', {
-        body: JSON.stringify({
-          name: event.target.name.value
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: 'POST'
-      })
+export default function SignUpForm(): JSX.Element {
+  const dictionaryState = useContext(DictionaryContext)
+  const {storageDelete} = useLocalStorage()
+  const {useInputHandler, validSignupCredentials} = useForm()
+  const { signup } = useAuthentication()
+  const { getPlatforms } = usePlatform()
+  const [availiablePlatforms, setAvailablePlatforms] = useState<any[]>([])
   
-      const result = await res.json()
-      console.log(result)
+  const [signupData, setSignupData] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+    platform: '',
+  })
+
+  useEffect(() => {
+    getPlatforms().then((platforms) => setAvailablePlatforms(platforms))
+    storageDelete('msg_registered');
+    console.info('Removed msg_deleted key from local storage');
+  }, []);
+
+  const registerUser = async event => {
+    event.preventDefault()
+    const signupCredentials: SignUpCredentials = { 
+      username: signupData.email, 
+      password: signupData.password,
+      platform: selectedPlatform,
+      language: dictionaryState.dictionary.id
     }
 
-    return (
-      <>
-        {showAlert && <AlertDialog/>}
-        <form onSubmit={registerUser} className={classes.form}>
-            <label htmlFor="email">E-Mail</label>
-            <input id="email" name="email" type="mail" required className={classes.input} />
-            <label htmlFor="password">Contraseña</label>
-            <input id="password" name="password" type="password" required className={classes.input} />
-            <label htmlFor="verifyPassword">Repetir contraseña</label>
-            <input id="verifyPassword" name="verifyPassword" type="password" required className={classes.input} />
-            <button type="submit" className={classes.submit}>Registrarse</button>
-        </form>
-      </>
-    )
+    if (validSignupCredentials(signupCredentials, signupData.confirmPassword)) {
+      signup(signupCredentials)
+        .then((res) => {
+          Router.push('/login?registered_redirect=true')
+        })
+        .catch((err) => {
+          switch (err.response.status) {
+            default: {
+              Swal.fire({
+                icon: 'error',
+                title: dictionaryState.dictionary.swal.defaultError.title,
+                text: dictionaryState.dictionary.swal.defaultError.text,
+              });
+            }
+          }
+      });
+    }
   }
+
+  const handleInputChange = (event) => {
+    useInputHandler(event, signupData, setSignupData)
+  }
+
+  const [selectedPlatform, setSelectedPlatform] = useState('')
+
+  return (
+    <>
+      <form onSubmit={registerUser} className={formStyle.form}>
+      <div className={formStyle.inputContainer}>
+          <FontAwesomeIcon icon={faEnvelope} className={formStyle.inputIcon} />
+          <input id="email" onChange={handleInputChange} name="email" type="mail" className={formStyle.input} placeholder={dictionaryState.dictionary.signup.form.email} />
+        </div>
+        <div className={formStyle.inputContainer}>
+          <FontAwesomeIcon icon={faLock} className={formStyle.inputIcon} />
+          <input id="password" onChange={handleInputChange} name="password" type="password" className={formStyle.input} placeholder={dictionaryState.dictionary.signup.form.password} />
+        </div>
+        <div className={formStyle.inputContainer}>
+          <FontAwesomeIcon icon={faLock} className={formStyle.inputIcon} />
+          <input id="confirmPassword" onChange={handleInputChange} name="confirmPassword" type="password" className={formStyle.input} placeholder={dictionaryState.dictionary.signup.form.confirmPassword} />
+        </div>
+        <div className={formStyle.inputContainer}>
+          <FontAwesomeIcon icon={faFilm} className={formStyle.inputIcon} />
+        <Dropdown
+          options={availiablePlatforms}
+          onChange={(selected: any) => setSelectedPlatform(selected.value)}
+          placeholder={dictionaryState.dictionary.signup.form.platform}
+        />
+        </div>
+        <button type="submit" className={formStyle.submit}>{dictionaryState.dictionary.signup.form.submit}</button>
+      </form>
+    </>
+  )
+}
