@@ -31,6 +31,7 @@
     border-radius: 1rem;
     margin-right: 5rem;
     padding-bottom: 1rem;
+    min-width: 578px;
 }
 
 .userCardHeader {
@@ -79,4 +80,20 @@
 
 .apiKeyTextWrapper {
     width: 50%;
+}
+
+@media only screen and (max-width: 1000px) {
+    .apiKeyText {
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .userCardHeader {
+        font-size: 0.8em;
+    }
+
+    .apiKeyText {
+        width: 200px;
+    }
 }
