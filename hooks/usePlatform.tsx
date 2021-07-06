@@ -1,5 +1,5 @@
 import axios from "axios"
-import { environment } from "../environments/environment.dev"
+import { environment } from "../environments/environment"
 import { useLocalStorage } from "./useLocalStorage"
 
 export const usePlatform = () => {
@@ -10,7 +10,7 @@ export const usePlatform = () => {
         if(!platforms) {
             platforms = await (await axios.get(`${environment.API_URL}platform`)).data
                 .map((p) => p.name)
-            storageSet('platforms', JSON.stringify(platforms))
+                storageSet('platforms', JSON.stringify(platforms))
         }
         return platforms;
     }
