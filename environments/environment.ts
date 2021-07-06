@@ -1,5 +1,5 @@
 export const environment = {
-    API_URL: 'https://desappgrupof.heroku.com/',
+    API_URL: 'https://desappgrupof.herokuapp.com/',
     FIREBASE: {
         apiKey: "AIzaSyCvNqYHiXurEqG8p5bc0TP_p1E2qBfDITM",
         authDomain: "re-sena-api.firebaseapp.com",
