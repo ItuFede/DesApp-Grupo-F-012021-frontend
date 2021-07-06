@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT"
+    "start": "next start -p $PORT",
+    "tsc": "tsc",
+    "postinstall": "npm run tsc"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
